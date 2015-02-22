@@ -5,13 +5,7 @@ use Eloquent;
 class Item extends Eloquent
 {
     protected $fillable = ['title', 'completed'];
-
-    public function __construct(Title $title)
-    {
-        $this->title = $title;
-        $this->completed = false;
-    }
-
+    
     /**
      * Add new item
      *
@@ -20,7 +14,9 @@ class Item extends Eloquent
      */
     public static function add(Title $title)
     {
-        return new self($title);
+        $completed = false;
+
+        return new self(compact('title', 'completed'));
     }
 
     /**

@@ -26,9 +26,29 @@ class ItemService
     {
         $title = new Title($title);
 
-        $item = new Item($title);
+        $item = Item::add($title);
 
         $this->itemRepository->create($item);
+
+        return $item;
+    }
+
+    /**
+     * Update item title
+     *
+     * @param int $itemId
+     * @param string $title
+     * @return Item
+     */
+    public function updateTitle($itemId, $title)
+    {
+        $title = new Title($title);
+
+        $item = $this->itemRepository->find($itemId);
+
+        $item->updateTitle($title);
+
+        $this->itemRepository->update($item);
 
         return $item;
     }

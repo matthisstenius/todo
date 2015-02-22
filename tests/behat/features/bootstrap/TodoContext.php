@@ -4,8 +4,6 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
 use Behat\MinkExtension\Context\MinkContext;
 use Laracasts\Behat\Context\Migrator;
-use Todo\Domain\Item;
-use Todo\Domain\Title;
 use PHPUnit_Framework_TestCase as PHPUnit;
 use Todo\Services\ItemService;
 
@@ -35,11 +33,8 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
         $hash = $table->getHash();
 
         foreach ($hash as $item) {
-            $this->itemService->add($item['title']);
-//            $title = new Title($item['title']);
-//
-//            $todoItem = Item::add($title);
-//            $this->data['items'][] = $todoItem;
+            $todoItem = $this->itemService->add($item['title']);
+            $this->data['items'][] = $todoItem;
         }
     }
 
@@ -66,9 +61,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
      */
     public function iAddANewTodoItemWithTitle($title)
     {
-        $title = new Title($title);
-
-        $todoItem = Item::add($title);
+        $todoItem = $this->itemService->add($title);
 
         $this->data['item'] = $todoItem;
     }
@@ -89,9 +82,9 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $currentItem = $this->data['item'];
 
-        $title = new Title($updatedTitle);
+        $updatedItem = $this->itemService->updateTitle($currentItem->id, $updatedTitle);
 
-        $currentItem->updateTitle($title);
+        $this->data['item'] = $updatedItem;
     }
 
     /**
