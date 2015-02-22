@@ -16,7 +16,7 @@ class Name
     }
 
     /**
-     * Get string representation of name
+     * Get string representation of Name
      *
      * @return string
      */
@@ -25,6 +25,15 @@ class Name
         return $this->name;
     }
 
+    /**
+     * Get string representation of Name
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
     /**
      * Check if name is valid
      *

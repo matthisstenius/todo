@@ -46,4 +46,24 @@ class TodoContext implements SnippetAcceptingContext
 
         PHPUnit::assertCount((int)$count, $this->data['items']);
     }
+
+    /**
+     * @When I add a new todo item with name :arg1
+     */
+    public function iAddANewTodoItemWithName($name)
+    {
+        $name = new Name($name);
+
+        $todoItem = Item::add($name);
+
+        $this->data['item'] = $todoItem;
+    }
+
+    /**
+     * @Then I should be able to see a todo item with name :arg1
+     */
+    public function iShouldBeAbleToSeeATodoItemWithName($name)
+    {
+        PHPUnit::assertEquals($name, $this->data['item']->name);
+    }
 } 
