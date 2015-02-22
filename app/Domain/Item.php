@@ -6,14 +6,20 @@ class Item extends Eloquent
 {
     protected $fillable = ['name', 'completed'];
 
+    public function __construct(Name $name)
+    {
+        $this->name = $name;
+        $this->completed = false;
+    }
+
     /**
      * Add new item
      *
-     * @param string $name
+     * @param Name $name
      * @return Item
      */
-    public static function add($name)
+    public static function add(Name $name)
     {
-        return new self($name, false);
+        return new self($name);
     }
 }

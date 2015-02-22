@@ -6,4 +6,5 @@ default:
             paths: [ %paths.base%/tests/behat/features]
             contexts:
               - FeatureContext
+              - TodoContext
 

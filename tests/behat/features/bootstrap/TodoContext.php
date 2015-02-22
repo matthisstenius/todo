@@ -1,7 +1,10 @@
 <?php
 
 use Behat\Behat\Context\SnippetAcceptingContext;
+use Behat\Gherkin\Node\TableNode;
 use Todo\Domain\Item;
+use Todo\Domain\Name;
+use PHPUnit_Framework_TestCase as PHPUnit;
 
 class TodoContext implements SnippetAcceptingContext
 {
@@ -13,11 +16,18 @@ class TodoContext implements SnippetAcceptingContext
     }
 
     /**
-     * @Given There is a todo named :arg1
+     * @Given The following todo items exist
      */
-    public function thereIsATodoNamed($name)
+    public function thereIsATodoNamed(TableNode $table)
     {
-        $todo = Item::add($name);
+        $hash = $table->getHash();
+
+        foreach ($hash as $item) {
+            $name = new Name($item['name']);
+
+            $todoItem = Item::add($name);
+            $this->data['items'][] = $todoItem;
+        }
     }
 
     /**
@@ -25,14 +35,15 @@ class TodoContext implements SnippetAcceptingContext
      */
     public function iWantToSeeAllMyTodos()
     {
-        throw new PendingException();
+
     }
 
     /**
-     * @Then I should be able to see a list containing :arg1 todos with name :arg2
+     * @Then I should be able to see a list containing :arg1 todo items
      */
-    public function iShouldBeAbleToSeeAListContainingTodosWithName($arg1, $arg2)
+    public function iShouldBeAbleToSeeATodoWithName($count)
     {
-        throw new PendingException();
+
+        PHPUnit::assertCount((int)$count, $this->data['items']);
     }
 } 
