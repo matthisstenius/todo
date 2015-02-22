@@ -3,3 +3,4 @@ suites:
         namespace: Todo
         psr4_prefix: Todo
         src_path: app
+        spec_path: tests

@@ -2585,6 +2585,7 @@ return array(
     'Todo\\Commands\\Command' => $baseDir . '/app/Commands/Command.php',
     'Todo\\Console\\Commands\\Inspire' => $baseDir . '/app/Console/Commands/Inspire.php',
     'Todo\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'Todo\\Domain\\Item' => $baseDir . '/app/Domain/Item.php',
     'Todo\\Events\\Event' => $baseDir . '/app/Events/Event.php',
     'Todo\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'Todo\\Http\\Controllers\\Auth\\AuthController' => $baseDir . '/app/Http/Controllers/Auth/AuthController.php',
