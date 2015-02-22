@@ -4,32 +4,32 @@ use Eloquent;
 
 class Item extends Eloquent
 {
-    protected $fillable = ['name', 'completed'];
+    protected $fillable = ['title', 'completed'];
 
-    public function __construct(Name $name)
+    public function __construct(Title $title)
     {
-        $this->name = $name;
+        $this->title = $title;
         $this->completed = false;
     }
 
     /**
      * Add new item
      *
-     * @param Name $name
+     * @param Title $title
      * @return Item
      */
-    public static function add(Name $name)
+    public static function add(Title $title)
     {
-        return new self($name);
+        return new self($title);
     }
 
     /**
-     * Update name
+     * Update title
      *
-     * @param Name $name
+     * @param Title $title
      */
-    public function updateName(Name $name)
+    public function updateTitle(Title $title)
     {
-        $this->name = $name;
+        $this->title = $title;
     }
 }

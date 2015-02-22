@@ -2,17 +2,17 @@
 
 namespace Todo\Domain;
 
-class Name
+class Title
 {
     /**
      * @var string
      */
-    private $name;
+    private $title;
 
-    public function __construct($name)
+    public function __construct($title)
     {
-        $this->assertValidName($name);
-        $this->name = $name;
+        $this->assertValidTitle($title);
+        $this->title = $title;
     }
 
     /**
@@ -22,7 +22,7 @@ class Name
      */
     public function toString()
     {
-        return $this->name;
+        return $this->title;
     }
 
     /**
@@ -32,17 +32,17 @@ class Name
      */
     public function __toString()
     {
-        return $this->name;
+        return $this->title;
     }
     /**
      * Check if name is valid
      *
-     * @param string $name
+     * @param string $title
      */
-    private function assertValidName($name)
+    private function assertValidTitle($title)
     {
-        if (! is_string($name) || strlen($name) < 1) {
-            throw new \InvalidArgumentException("Invalid name: $name");
+        if (! is_string($title) || strlen($title) < 1) {
+            throw new \InvalidArgumentException("Invalid name: $title");
         }
     }
 }

@@ -3,7 +3,7 @@
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\TableNode;
 use Todo\Domain\Item;
-use Todo\Domain\Name;
+use Todo\Domain\Title;
 use PHPUnit_Framework_TestCase as PHPUnit;
 
 class TodoContext implements SnippetAcceptingContext
@@ -23,9 +23,9 @@ class TodoContext implements SnippetAcceptingContext
         $hash = $table->getHash();
 
         foreach ($hash as $item) {
-            $name = new Name($item['name']);
+            $title = new Title($item['title']);
 
-            $todoItem = Item::add($name);
+            $todoItem = Item::add($title);
             $this->data['items'][] = $todoItem;
         }
     }
@@ -48,45 +48,46 @@ class TodoContext implements SnippetAcceptingContext
     }
 
     /**
-     * @When I add a new todo item with name :arg1
-     * @Given There is a todo item named :arg1
+     * @When I add a new todo item with title :arg1
+     * @Given There is a todo item titled :arg1
      */
-    public function iAddANewTodoItemWithName($name)
+    public function iAddANewTodoItemWithTitle($title)
     {
-        $name = new Name($name);
+        $title = new Title($title);
 
-        $todoItem = Item::add($name);
+        $todoItem = Item::add($title);
 
         $this->data['item'] = $todoItem;
     }
 
     /**
-     * @Then I should be able to see a todo item with name :arg1
+     * @Then I should be able to see a todo item with title :arg1
      */
-    public function iShouldBeAbleToSeeATodoItemWithName($name)
+    public function iShouldBeAbleToSeeATodoItemWithTitle($title)
     {
-        PHPUnit::assertEquals($name, $this->data['item']->name);
+        PHPUnit::assertEquals($title, $this->data['item']->title);
+        PHPUnit::assertFalse($this->data['item']->completed);
     }
 
     /**
-     * @When I update name of todo item :arg1 to :arg2
+     * @When I update title of todo item :arg1 to :arg2
      */
-    public function iUpdateNameOfTodoItemTo($arg1, $updatedName)
+    public function iUpdateNameOfTodoItemTo($arg1, $updatedTitle)
     {
         $currentItem = $this->data['item'];
 
-        $name = new Name($updatedName);
+        $title = new Title($updatedTitle);
 
-        $currentItem->updateName($name);
+        $currentItem->updateTitle($title);
     }
 
     /**
-     * @Then Todo item :arg1 should have name :arg2
+     * @Then Todo item :arg1 should have title :arg2
      */
-    public function todoItemShouldHaveName($arg1, $updatedName)
+    public function todoItemShouldHaveName($arg1, $updatedTitle)
     {
         $item = $this->data['item'];
 
-        PHPUnit::assertEquals($updatedName, $item->name);
+        PHPUnit::assertEquals($updatedTitle, $item->title);
     }
 } 

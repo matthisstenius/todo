@@ -6,7 +6,7 @@ Feature: See all todos
 
   Scenario: Get list of all todos
     Given The following todo items exist
-      | name  |
+      | title  |
       | My first todo |
       | My second todo   |
       | My third todo |
