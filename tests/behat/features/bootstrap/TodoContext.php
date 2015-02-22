@@ -49,6 +49,7 @@ class TodoContext implements SnippetAcceptingContext
 
     /**
      * @When I add a new todo item with name :arg1
+     * @Given There is a todo item named :arg1
      */
     public function iAddANewTodoItemWithName($name)
     {
@@ -65,5 +66,27 @@ class TodoContext implements SnippetAcceptingContext
     public function iShouldBeAbleToSeeATodoItemWithName($name)
     {
         PHPUnit::assertEquals($name, $this->data['item']->name);
+    }
+
+    /**
+     * @When I update name of todo item :arg1 to :arg2
+     */
+    public function iUpdateNameOfTodoItemTo($arg1, $updatedName)
+    {
+        $currentItem = $this->data['item'];
+
+        $name = new Name($updatedName);
+
+        $currentItem->updateName($name);
+    }
+
+    /**
+     * @Then Todo item :arg1 should have name :arg2
+     */
+    public function todoItemShouldHaveName($arg1, $updatedName)
+    {
+        $item = $this->data['item'];
+
+        PHPUnit::assertEquals($updatedName, $item->name);
     }
 } 

@@ -22,4 +22,14 @@ class Item extends Eloquent
     {
         return new self($name);
     }
+
+    /**
+     * Update name
+     *
+     * @param Name $name
+     */
+    public function updateName(Name $name)
+    {
+        $this->name = $name;
+    }
 }
