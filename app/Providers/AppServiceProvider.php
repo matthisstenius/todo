@@ -29,6 +29,16 @@ class AppServiceProvider extends ServiceProvider {
 			'Illuminate\Contracts\Auth\Registrar',
 			'Todo\Services\Registrar'
 		);
+
+        $this->app->bind(
+            'ItemService',
+            'Todo\Services\ItemService'
+        );
+
+        $this->app->bind(
+            'Todo\Repositories\ItemRepository',
+            'Todo\Repositories\EloquentItemRepository'
+        );
 	}
 
 }

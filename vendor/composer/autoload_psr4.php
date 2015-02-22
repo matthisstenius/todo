@@ -12,6 +12,8 @@ return array(
     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'League\\Flysystem\\' => array($vendorDir . '/league/flysystem/src'),
+    'Laracasts\\Behat\\' => array($vendorDir . '/laracasts/behat-laravel-extension/src'),
     'Illuminate\\' => array($vendorDir . '/laravel/framework/src/Illuminate'),
     'ClassPreloader\\' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Behat\\Mink\\' => array($vendorDir . '/behat/mink/src'),
 );
