@@ -5,7 +5,7 @@ use Eloquent;
 class Item extends Eloquent
 {
     protected $fillable = ['title', 'completed'];
-    
+
     /**
      * Add new item
      *

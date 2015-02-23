@@ -17,6 +17,27 @@ class ItemService
     }
 
     /**
+     * Get all items
+     *
+     * @return Collection
+     */
+    public function findAll()
+    {
+        return $this->itemRepository->findAll();
+    }
+
+    /**
+     * Get item by id
+     *
+     * @param int $id
+     * @return Item
+     */
+    public function find($id)
+    {
+        return $this->itemRepository->find($id);
+    }
+
+    /**
      * Add new item
      *
      * @param string $title
@@ -51,5 +72,17 @@ class ItemService
         $this->itemRepository->update($item);
 
         return $item;
+    }
+
+    /**
+     * Remove item
+     *
+     * @param int $id
+     */
+    public function remove($id)
+    {
+        $item = $this->find($id);
+
+        $this->itemRepository->destroy($item);
     }
 } 

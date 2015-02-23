@@ -54,6 +54,6 @@ class EloquentItemRepository implements ItemRepository
      */
     public function destroy(Item $item)
     {
-        $item->destroy();
+        $item->delete();
     }
 }

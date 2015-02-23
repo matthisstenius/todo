@@ -96,4 +96,24 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
 
         PHPUnit::assertEquals($updatedTitle, $item->title);
     }
+
+    /**
+     * @When I remove that item :arg1
+     */
+    public function iRemoveThatItem($arg1)
+    {
+        $item = $this->data['item'];
+
+        $this->itemService->remove($item->id);
+    }
+
+    /**
+     * @Then Item :arg1 should not be in my list of todos
+     */
+    public function itemShouldNotBeInMyListOfTodos($arg1)
+    {
+        $items = $this->itemService->findAll();
+
+        PHPUnit::assertNotContains($this->data['item'], $items);
+    }
 } 
