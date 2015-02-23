@@ -5,6 +5,7 @@ use Eloquent;
 class Item extends Eloquent
 {
     protected $fillable = ['title', 'completed'];
+    protected $primaryKey = '_id';
 
     /**
      * Add new item

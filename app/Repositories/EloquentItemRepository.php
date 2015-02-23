@@ -34,7 +34,7 @@ class EloquentItemRepository implements ItemRepository
      */
     public function find($id)
     {
-        return Item::find($id);
+        return Item::findOrFail($id);
     }
 
     /**

@@ -82,7 +82,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $currentItem = $this->data['item'];
 
-        $updatedItem = $this->itemService->updateTitle($currentItem->id, $updatedTitle);
+        $updatedItem = $this->itemService->updateTitle($currentItem->_id, $updatedTitle);
 
         $this->data['item'] = $updatedItem;
     }
@@ -104,7 +104,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $item = $this->data['item'];
 
-        $this->itemService->remove($item->id);
+        $this->itemService->remove($item->_id);
     }
 
     /**
@@ -124,7 +124,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $item = $this->data['item'];
 
-        $this->itemService->complete($item->id);
+        $this->itemService->complete($item->_id);
     }
 
     /**
@@ -132,7 +132,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
      */
     public function itemShouldBeMarkedAsCompleted($arg1)
     {
-        $item = $this->itemService->find($this->data['item']->id);
+        $item = $this->itemService->find($this->data['item']->_id);
 
         PHPUnit::assertTrue($item->isCompleted());
     }
