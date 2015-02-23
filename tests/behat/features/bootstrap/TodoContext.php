@@ -116,4 +116,24 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
 
         PHPUnit::assertNotContains($this->data['item'], $items);
     }
+
+    /**
+     * @When I complete item :arg1
+     */
+    public function iCompleteItem($arg1)
+    {
+        $item = $this->data['item'];
+
+        $this->itemService->complete($item->id);
+    }
+
+    /**
+     * @Then Item :arg1 should be marked as completed
+     */
+    public function itemShouldBeMarkedAsCompleted($arg1)
+    {
+        $item = $this->itemService->find($this->data['item']->id);
+
+        PHPUnit::assertTrue($item->isCompleted());
+    }
 } 

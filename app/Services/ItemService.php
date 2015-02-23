@@ -85,4 +85,13 @@ class ItemService
 
         $this->itemRepository->destroy($item);
     }
+
+    public function complete($id)
+    {
+        $item = $this->find($id);
+
+        $item->complete();
+
+        $this->itemRepository->update($item);
+    }
 } 

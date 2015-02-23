@@ -28,4 +28,22 @@ class Item extends Eloquent
     {
         $this->title = $title;
     }
+
+    /**
+     * Mark item as completed
+     */
+    public function complete()
+    {
+        $this->completed = true;
+    }
+
+    /**
+     * Check if item is completed
+     *
+     * @return bool
+     */
+    public function isCompleted()
+    {
+        return (bool) $this->completed;
+    }
 }
