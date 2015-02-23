@@ -10,6 +10,10 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', function() {
+    return view('index');
+});
+
 Route::get('/get-todos', 'ItemController@index');
 Route::post('/create-todos', 'ItemController@store');
 Route::put('/update-todos/{id}', 'ItemController@update');
