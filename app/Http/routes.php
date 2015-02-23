@@ -10,12 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', 'WelcomeController@index');
-
-Route::get('home', 'HomeController@index');
-
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::get('/get-todos', 'ItemController@index');
+Route::post('/create-todos', 'ItemController@store');
+Route::put('/update-todos/{id}', 'ItemController@update');
+Route::put('/update-todos', 'ItemController@updateMultiple');
+Route::delete('/delete-todos/{id}', 'ItemController@destroy');
+Route::delete('/delete-todos', 'ItemController@destroyMultiple');
