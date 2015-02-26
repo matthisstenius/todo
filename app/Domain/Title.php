@@ -34,6 +34,7 @@ class Title
     {
         return $this->title;
     }
+
     /**
      * Check if name is valid
      *
@@ -42,7 +43,7 @@ class Title
     private function assertValidTitle($title)
     {
         if (! is_string($title) || strlen($title) < 1) {
-            throw new \InvalidArgumentException("Invalid name: $title");
+            throw new \InvalidArgumentException("Invalid title: $title");
         }
     }
 }

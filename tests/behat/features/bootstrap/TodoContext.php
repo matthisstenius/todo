@@ -82,7 +82,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $currentItem = $this->data['item'];
 
-        $updatedItem = $this->itemService->updateTitle($currentItem->_id, $updatedTitle);
+        $updatedItem = $this->itemService->update($currentItem->_id, $updatedTitle);
 
         $this->data['item'] = $updatedItem;
     }
@@ -124,7 +124,7 @@ class TodoContext extends MinkContext implements SnippetAcceptingContext
     {
         $item = $this->data['item'];
 
-        $this->itemService->complete($item->_id);
+        $this->itemService->update($item->_id, $item->title->toString(), true);
     }
 
     /**

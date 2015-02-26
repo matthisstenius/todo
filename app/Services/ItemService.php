@@ -55,19 +55,24 @@ class ItemService
     }
 
     /**
-     * Update item title
+     * Update item
      *
      * @param int $itemId
      * @param string $title
+     * @param bool $completed
      * @return Item
      */
-    public function updateTitle($itemId, $title)
+    public function update($itemId, $title, $completed = false)
     {
         $title = new Title($title);
 
         $item = $this->itemRepository->find($itemId);
 
         $item->updateTitle($title);
+
+        if ($completed) {
+            $item->complete();
+        }
 
         $this->itemRepository->update($item);
 
@@ -84,14 +89,5 @@ class ItemService
         $item = $this->find($id);
 
         $this->itemRepository->destroy($item);
-    }
-
-    public function complete($id)
-    {
-        $item = $this->find($id);
-
-        $item->complete();
-
-        $this->itemRepository->update($item);
     }
 } 

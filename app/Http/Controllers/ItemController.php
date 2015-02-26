@@ -35,9 +35,15 @@ class ItemController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
+        $this->validate($request, [
+            'todo.title' => 'required'
+        ]);
 
+        $this->itemService->add($request->input('todo.title'));
+
+        return response()->json(200);
 	}
 
 	/**

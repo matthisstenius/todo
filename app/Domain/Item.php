@@ -6,6 +6,9 @@ class Item extends Eloquent
 {
     protected $fillable = ['title', 'completed'];
     protected $primaryKey = '_id';
+    protected $casts = [
+        'completed' => 'boolean'
+    ];
 
     /**
      * Add new item
