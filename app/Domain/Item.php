@@ -50,4 +50,9 @@ class Item extends Eloquent
     {
         return (bool) $this->completed;
     }
+
+    public function getTitleAttribute($title)
+    {
+        return $title->toString();
+    }
 }

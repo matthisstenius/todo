@@ -41,9 +41,9 @@ class ItemController extends Controller {
             'todo.title' => 'required'
         ]);
 
-        $this->itemService->add($request->input('todo.title'));
+        $item = $this->itemService->add($request->input('todo.title'));
 
-        return response()->json(200);
+        return response()->json($item);
 	}
 
 	/**
@@ -68,9 +68,10 @@ class ItemController extends Controller {
 	 */
 	public function update($id, Request $request)
 	{
-        $name = $request->input('name');
+        $name = $request->input('todo.title');
+        $completed = $request->input('todo.completed');
 
-		$this->itemService->updateTitle($id, $name);
+		$this->itemService->update($id, $name, $completed);
 
         return response()->json(200);
 	}

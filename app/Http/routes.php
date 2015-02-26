@@ -18,5 +18,5 @@ Route::get('/get-todos', 'ItemController@index');
 Route::post('/create-todos', 'ItemController@store');
 Route::put('/update-todos/{id}', 'ItemController@update');
 Route::put('/update-todos', 'ItemController@updateMultiple');
-Route::delete('/delete-todos/{id}', 'ItemController@destroy');
-Route::delete('/delete-todos', 'ItemController@destroyMultiple');
+Route::put('/delete-todos/{id}', 'ItemController@destroy');
+Route::put('/delete-todos', 'ItemController@destroyMultiple');
