@@ -20,3 +20,4 @@ Route::put('/update-todos/{id}', 'ItemController@update');
 Route::put('/update-todos', 'ItemController@updateMultiple');
 Route::put('/delete-todos/{id}', 'ItemController@destroy');
 Route::put('/delete-todos', 'ItemController@destroyMultiple');
+Route::post('/email', 'ItemController@sendEmail');

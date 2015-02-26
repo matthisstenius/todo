@@ -5,7 +5,9 @@ use Eloquent;
 class Item extends Eloquent
 {
     protected $fillable = ['title', 'completed'];
+
     protected $primaryKey = '_id';
+
     protected $casts = [
         'completed' => 'boolean'
     ];
@@ -35,10 +37,11 @@ class Item extends Eloquent
 
     /**
      * Mark item as completed
+     * @param bool $completed
      */
-    public function complete()
+    public function complete($completed)
     {
-        $this->completed = true;
+        $this->completed = $completed;
     }
 
     /**
@@ -49,10 +52,5 @@ class Item extends Eloquent
     public function isCompleted()
     {
         return (bool) $this->completed;
-    }
-
-    public function getTitleAttribute($title)
-    {
-        return $title->toString();
     }
 }

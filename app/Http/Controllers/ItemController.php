@@ -43,7 +43,13 @@ class ItemController extends Controller {
 
         $item = $this->itemService->add($request->input('todo.title'));
 
-        return response()->json($item);
+        $response = [
+            '_id' => $item->_id,
+            'title' => $item->title->toString(),
+            'completed' => $item->isCompleted()
+        ];
+
+        return response()->json($response);
 	}
 
 	/**
@@ -78,7 +84,13 @@ class ItemController extends Controller {
 
     public function updateMultiple(Request $request)
     {
+        $items = $request->input('todo');
 
+        foreach ($items as $item) {
+            $this->itemService->update($item['_id'], $item['title'], $item['completed']);
+        }
+
+        return response()->json(200);
     }
 
 	/**
@@ -94,4 +106,25 @@ class ItemController extends Controller {
         return response()->json(200);
 	}
 
+    public function destroyMultiple(Request $request)
+    {
+        $items = $request->input('todo');
+
+        foreach ($items as $item) {
+            $this->itemService->remove($item['_id']);
+        }
+
+        return response()->json(200);
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $this->validate($request, [
+           'email' => 'email'
+        ]);
+
+        $this->itemService->sendNotificationEmail($request->input('email'));
+
+        return response()->json(200);
+    }
 }

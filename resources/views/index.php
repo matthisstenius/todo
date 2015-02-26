@@ -50,7 +50,7 @@
 						</li>
 					</ul>
 					<button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed ({{completedCount}})</button>
-					<button id="" ng-click="sendEmail()" >send email</button>
+					<button id="send-email" ng-click="sendEmail()" >send email</button>
 
 				</footer>
 			</section>

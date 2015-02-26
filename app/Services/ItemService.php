@@ -1,5 +1,6 @@
 <?php namespace Todo\Services;
 
+use Illuminate\Contracts\Mail\MailQueue;
 use Todo\Domain\Item;
 use Todo\Domain\Title;
 use Todo\Repositories\ItemRepository;
@@ -10,10 +11,15 @@ class ItemService
      * @var ItemRepository
      */
     private $itemRepository;
+    /**
+     * @var Mailer
+     */
+    private $mailer;
 
-    public function __construct(ItemRepository $itemRepository)
+    public function __construct(ItemRepository $itemRepository, MailQueue $mailer)
     {
         $this->itemRepository = $itemRepository;
+        $this->mailer = $mailer;
     }
 
     /**
@@ -70,9 +76,7 @@ class ItemService
 
         $item->updateTitle($title);
 
-        if ($completed) {
-            $item->complete();
-        }
+        $item->complete($completed);
 
         $this->itemRepository->update($item);
 
@@ -89,5 +93,20 @@ class ItemService
         $item = $this->find($id);
 
         $this->itemRepository->destroy($item);
+    }
+
+    /**
+     * Mail driver is in debug mode so check the log file in storage/logs for email output
+     * Will not actually queue the emails due to this being a local setup
+     *
+     * @param string $email
+     */
+    public function sendNotificationEmail($email)
+    {
+        $items = $this->findAll();
+
+        $this->mailer->queue('emails.items', ['items' => $items], function($message) use ($email) {
+           $message->to($email)->subject('Here is a list of your todo items!');
+        });
     }
 } 
