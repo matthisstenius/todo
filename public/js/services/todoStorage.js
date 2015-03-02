@@ -73,7 +73,7 @@ angular.module('todo')
 				});
 			},
 
-			email: function (email) {
+			email: function (email, callback) {
 
 				$http.post('/email', email).
 				success(function(data, status, headers, config) {

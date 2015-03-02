@@ -30,11 +30,12 @@ class ItemController extends Controller {
         return response()->json($items);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request $request
+     * @return Response
+     */
 	public function store(Request $request)
 	{
         $this->validate($request, [
@@ -66,12 +67,13 @@ class ItemController extends Controller {
 	}
 
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int $id
+     * @param Request $request
+     * @return Response
+     */
 	public function update($id, Request $request)
 	{
         $name = $request->input('todo.title');
@@ -125,6 +127,6 @@ class ItemController extends Controller {
 
         $this->itemService->sendNotificationEmail($request->input('email'));
 
-        return response()->json(200);
+        return response()->json(['status' => 200]);
     }
 }
