@@ -6,7 +6,8 @@ functional/unit tests.
 ### Installation
 
 * Clone the repo
-* In the project root run: `composer install` and `bower install`
+* In the project root run: `composer install`
+* In /public run `bower install`
 * Start a local server with `php artisan serve`
 
 
