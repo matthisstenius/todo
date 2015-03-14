@@ -1,6 +1,7 @@
 <?php namespace Todo\Services;
 
 use Illuminate\Contracts\Mail\MailQueue;
+use Illuminate\Support\Facades\Log;
 use Todo\Domain\Item;
 use Todo\Domain\Title;
 use Todo\Repositories\ItemRepository;
@@ -76,7 +77,11 @@ class ItemService
 
         $item->updateTitle($title);
 
-        $item->complete($completed);
+        if ($completed) {
+            $item->complete();
+        } else {
+            $item->unComplete();
+        }
 
         $this->itemRepository->update($item);
 

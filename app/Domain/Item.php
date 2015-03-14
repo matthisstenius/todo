@@ -37,11 +37,18 @@ class Item extends Eloquent
 
     /**
      * Mark item as completed
-     * @param bool $completed
      */
-    public function complete($completed)
+    public function complete()
     {
-        $this->completed = $completed;
+        $this->completed = true;
+    }
+
+    /**
+     * Mark item as un complete
+     */
+    public function unComplete()
+    {
+        $this->completed = false;
     }
 
     /**

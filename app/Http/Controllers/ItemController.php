@@ -79,7 +79,7 @@ class ItemController extends Controller {
         $name = $request->input('todo.title');
         $completed = $request->input('todo.completed');
 
-		$this->itemService->update($id, $name, $completed);
+		$this->itemService->update($id, $name, (bool) $completed);
 
         return response()->json(200);
 	}
@@ -89,7 +89,7 @@ class ItemController extends Controller {
         $items = $request->input('todo');
 
         foreach ($items as $item) {
-            $this->itemService->update($item['_id'], $item['title'], $item['completed']);
+            $this->itemService->update($item['_id'], $item['title'], (bool) $item['completed']);
         }
 
         return response()->json(200);
